@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COUNTER = 1
+COUNT = 1
 
 forpython3
 
