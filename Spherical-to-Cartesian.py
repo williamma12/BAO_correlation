@@ -47,7 +47,7 @@ for i in range(4001, 4006):
         w = 1
         p = integrate.quad(dc, 0, arr[j][2])
         phi=np.deg2rad(arr[j][0])
-        theta=np.deg2rad(arr[j][1])
+        theta=np.deg2rad(90-arr[j][1])
         x = p[0] * np.cos(phi) * np.cos(theta)
         y = p[0] * np.sin(phi) * np.cos(theta)
         z = p[0] * np.cos(theta)
