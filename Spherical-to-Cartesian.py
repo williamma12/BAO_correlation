@@ -4,8 +4,8 @@ import sys
 
 path = '/global/homes/w/wma/correlation/'
 suffix = '.v11.1.release.txt'
-start = sys.argv[2]
-end = sys.argv[3] + 1
+start = int(sys.argv[2])
+end = int(sys.argv[3]) + 1
 try:
     file = sys.argv[1]
     if file == 'data_north':
