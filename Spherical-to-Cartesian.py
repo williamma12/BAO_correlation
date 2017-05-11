@@ -4,6 +4,8 @@ import sys
 
 path = '/global/homes/w/wma/correlation/'
 suffix = '.v11.1.release.txt'
+start = sys.argv[2]
+end = sys.argv[3] + 1
 try:
     file = sys.argv[1]
     if file == 'data_north':
@@ -33,7 +35,7 @@ w = -1.0
 # Calculate comoving distance functions
 dc = lambda z : hubble/np.sqrt(OmegaM*(1.+z)**3+OmegaK*(1.+z)**2+OmegaL*(1.+z)**(-3.*(1.+w)))
 
-for i in range(4001, 4006):
+for i in range(start, end):
     result = []
     fname = prefix + str(i) + suffix
     pwd = path + fname
@@ -47,10 +49,10 @@ for i in range(4001, 4006):
         w = 1
         p = integrate.quad(dc, 0, arr[j][2])
         phi=np.deg2rad(arr[j][0])
-        theta=np.deg2rad(90-arr[j][1])
+        theta=np.deg2rad(90.-arr[j][1])
         x = p[0] * np.cos(phi) * np.cos(theta)
         y = p[0] * np.sin(phi) * np.cos(theta)
-        z = p[0] * np.cos(theta)
+        z = p[0] * np.sin(theta)
         result.append((x,y,z,w))
         
     np.savetxt(path + str(i) + "_" + str(file) + ".xyzw", result, delimiter='\t')
